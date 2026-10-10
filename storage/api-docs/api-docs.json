@@ -1,0 +1,3927 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Bookly API",
+        "description": "REST API for the Bookly service booking platform.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api/v1",
+            "description": "Bookly API v1"
+        }
+    ],
+    "paths": {
+        "/admin/users": {
+            "get": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "List users",
+                "description": "Returns users for admin management. Requires admin role.",
+                "operationId": "a8d98ea124f1b55f7ef93efe3b3f44ec",
+                "responses": {
+                    "200": {
+                        "description": "Users retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "Create user",
+                "description": "Creates a user from the admin panel. Requires admin role.",
+                "operationId": "95ae27c7f6475708212960fcd03703d7",
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/users/{user}": {
+            "get": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "Get user",
+                "description": "Returns a specific user. Requires admin role.",
+                "operationId": "29ad78a4cc3565e71aa983b1d7cee7b2",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "Update user",
+                "description": "Updates a user. Requires admin role.",
+                "operationId": "b00e08e7f376036fa5ece2232d9de28f",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "Delete user",
+                "description": "Deletes a user. Requires admin role.",
+                "operationId": "33fa627223fde527f24b74bff486c2ac",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/users/{user}/suspend": {
+            "post": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "Suspend user",
+                "description": "Suspends a user account. Requires admin role.",
+                "operationId": "c7577bc00b7a2e22ad8f23e3c321ba46",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User suspended successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/users/{user}/activate": {
+            "post": {
+                "tags": [
+                    "Admin - Users"
+                ],
+                "summary": "Activate user",
+                "description": "Activates a suspended user account. Requires admin role.",
+                "operationId": "e2edf1a834ee7c33314f01086794b57b",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User activated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/audit-logs": {
+            "get": {
+                "tags": [
+                    "Admin - Audit Logs"
+                ],
+                "summary": "List audit logs",
+                "description": "Returns audit logs for system activity. Requires admin role.",
+                "operationId": "62fa4ea3a9954715c21dc1d308b367d2",
+                "responses": {
+                    "200": {
+                        "description": "Audit logs retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/audit-logs/{auditLog}": {
+            "get": {
+                "tags": [
+                    "Admin - Audit Logs"
+                ],
+                "summary": "Get audit log",
+                "description": "Returns a specific audit log. Requires admin role.",
+                "operationId": "79016283331d1f48fac5a950aa7c9982",
+                "parameters": [
+                    {
+                        "name": "auditLog",
+                        "in": "path",
+                        "description": "Audit log ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Audit log retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "Audit log not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/reports/bookings": {
+            "get": {
+                "tags": [
+                    "Admin - Reports"
+                ],
+                "summary": "Booking report",
+                "description": "Returns booking statistics and metrics for administrators.",
+                "operationId": "ef84c00da18d8385cd92cb64143889c9",
+                "responses": {
+                    "200": {
+                        "description": "Booking report retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/reports/revenue": {
+            "get": {
+                "tags": [
+                    "Admin - Reports"
+                ],
+                "summary": "Revenue report",
+                "description": "Returns revenue statistics for administrators.",
+                "operationId": "d219ca30d9b790ddd68cacc05ff75a12",
+                "responses": {
+                    "200": {
+                        "description": "Revenue report retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/reports/providers": {
+            "get": {
+                "tags": [
+                    "Admin - Reports"
+                ],
+                "summary": "Provider report",
+                "description": "Returns provider statistics for administrators.",
+                "operationId": "1b893ce9186a32b1d9229742c6c341cd",
+                "responses": {
+                    "200": {
+                        "description": "Provider report retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/reports/services": {
+            "get": {
+                "tags": [
+                    "Admin - Reports"
+                ],
+                "summary": "Service report",
+                "description": "Returns service statistics for administrators.",
+                "operationId": "60e83b738ac2d8f7e6b4319f89513c53",
+                "responses": {
+                    "200": {
+                        "description": "Service report retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/reports/locations": {
+            "get": {
+                "tags": [
+                    "Admin - Reports"
+                ],
+                "summary": "Location report",
+                "description": "Returns location statistics for administrators.",
+                "operationId": "8dfd1511c58cdf5b975eb51a8c9ae115",
+                "responses": {
+                    "200": {
+                        "description": "Location report retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/reports/most-booked-services": {
+            "get": {
+                "tags": [
+                    "Admin - Reports"
+                ],
+                "summary": "Most booked services report",
+                "description": "Returns services ordered by booking count.",
+                "operationId": "60b10b2a1152a3a0f1c28d74ccdbca95",
+                "responses": {
+                    "200": {
+                        "description": "Most booked services retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/device-tokens": {
+            "post": {
+                "tags": [
+                    "Admin - Notifications"
+                ],
+                "summary": "Register device token",
+                "description": "Registers or updates an FCM device token for the authenticated user.",
+                "operationId": "0dc9677e9d4edcb00340c83c27ede1b3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string",
+                                        "example": "fcm_device_token_example",
+                                        "maxLength": 2000
+                                    },
+                                    "device_type": {
+                                        "type": "string",
+                                        "example": "web",
+                                        "nullable": true,
+                                        "enum": [
+                                            "web",
+                                            "android",
+                                            "ios"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Device token registered successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/notifications": {
+            "get": {
+                "tags": [
+                    "Admin - Notifications"
+                ],
+                "summary": "List admin notifications",
+                "description": "Returns notifications for the authenticated admin. Requires admin role.",
+                "operationId": "1334cccf594da9e8c20464d3baa8a1a8",
+                "responses": {
+                    "200": {
+                        "description": "Notifications retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/notifications/unread-count": {
+            "get": {
+                "tags": [
+                    "Admin - Notifications"
+                ],
+                "summary": "Get unread notification count",
+                "description": "Returns the number of unread notifications for the authenticated admin.",
+                "operationId": "1c85db3554cf786216670397a26f1c8b",
+                "responses": {
+                    "200": {
+                        "description": "Unread notification count retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/notifications/{notification}/read": {
+            "patch": {
+                "tags": [
+                    "Admin - Notifications"
+                ],
+                "summary": "Mark notification as read",
+                "description": "Marks an admin notification as read. Requires admin role.",
+                "operationId": "04373ae7a5342f732757be48860e8081",
+                "parameters": [
+                    {
+                        "name": "notification",
+                        "in": "path",
+                        "description": "Notification UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification marked as read"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/locations/trash": {
+            "get": {
+                "tags": [
+                    "Admin - Locations"
+                ],
+                "summary": "List trashed locations",
+                "description": "Returns all soft-deleted locations. Requires admin role.",
+                "operationId": "72fa7a00bbf87944a71965846f46cfeb",
+                "responses": {
+                    "200": {
+                        "description": "Trashed locations retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/locations/{location}/restore": {
+            "post": {
+                "tags": [
+                    "Admin - Locations"
+                ],
+                "summary": "Restore a trashed location",
+                "description": "Restores a soft-deleted location. Requires admin role.",
+                "operationId": "bea53cde18424fa757b1f4a33359962a",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location restored successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/services/trash": {
+            "get": {
+                "tags": [
+                    "Admin - Services"
+                ],
+                "summary": "List trashed services",
+                "description": "Returns all soft-deleted services. Requires admin role.",
+                "operationId": "e4771b143fc17d23a425ef165f3dc3b4",
+                "responses": {
+                    "200": {
+                        "description": "Trashed services retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/admin/services/{service}/restore": {
+            "post": {
+                "tags": [
+                    "Admin - Services"
+                ],
+                "summary": "Restore a trashed service",
+                "description": "Restores a soft-deleted service. Requires admin role.",
+                "operationId": "40374a76f6c183202b3bc0eb8dfbf825",
+                "parameters": [
+                    {
+                        "name": "service",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service restored successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Admin access required"
+                    },
+                    "404": {
+                        "description": "Service not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new user",
+                "description": "Create a new provider or customer account.",
+                "operationId": "142aefba21a72325f3ff5e9dafcd3823",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "Password123!"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "Password123!"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "customer",
+                                        "enum": [
+                                            "provider",
+                                            "customer"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login",
+                "description": "Authenticate a user and return a Sanctum Bearer token.",
+                "operationId": "c2806ac233ca0a0004ab45c32ad54d71",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "Password123!"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    },
+                    "403": {
+                        "description": "User is suspended"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                }
+            }
+        },
+        "/auth/profile": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authenticated user profile",
+                "operationId": "e1dc019441f741bb71f85aabc4f3c8f6",
+                "responses": {
+                    "200": {
+                        "description": "Profile retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Update authenticated user profile",
+                "operationId": "732446f141c302dacfdc8c2799601d97",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Updated"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.updated@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Profile updated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout",
+                "description": "Revoke the current Sanctum token.",
+                "operationId": "36e0c85c6745e8a18fb8d11a8dc32da6",
+                "responses": {
+                    "200": {
+                        "description": "Logged out successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/auth/logout-all": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout from all devices",
+                "description": "Revoke all Sanctum tokens belonging to the authenticated user.",
+                "operationId": "bb3b0b277b1361e7f8bd614727dd025a",
+                "responses": {
+                    "200": {
+                        "description": "Logged out from all devices successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/auth/change-password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Change password",
+                "operationId": "6d43505478164ccc3ce7524ab9ba7fae",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "current_password",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "current_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "OldPassword123!"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "NewPassword123!"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "NewPassword123!"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password changed successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated or current password is incorrect"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/bookings": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "List bookings",
+                "operationId": "8f6537bf367f07df1c1a0ae17855a9e4",
+                "responses": {
+                    "200": {
+                        "description": "Bookings retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Create a booking",
+                "description": "Creates a booking using a booking slot and an idempotency key to prevent duplicate bookings.",
+                "operationId": "11356275238592a45bbc4dfd6d36e36a",
+                "parameters": [
+                    {
+                        "name": "Idempotency-Key",
+                        "in": "header",
+                        "description": "Unique key for safely retrying the same booking request.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "booking-9f7c2d4a-20260916"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "booking_slot_id"
+                                ],
+                                "properties": {
+                                    "booking_slot_id": {
+                                        "type": "integer",
+                                        "example": 9
+                                    },
+                                    "notes": {
+                                        "type": "string",
+                                        "example": "Test booking",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "409": {
+                        "description": "Booking conflict or duplicate idempotency request"
+                    },
+                    "422": {
+                        "description": "Validation or availability error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/bookings/{booking}": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get booking",
+                "operationId": "a34f32ab116cb3f191cf0866bb3c0ad4",
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Booking retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/bookings/{booking}/status": {
+            "patch": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Change booking status",
+                "operationId": "2611f3a5763cb1b636c28daf9bb832d6",
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "confirmed",
+                                        "enum": [
+                                            "pending",
+                                            "confirmed",
+                                            "cancelled",
+                                            "completed",
+                                            "no_show"
+                                        ]
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "Provider confirmed the appointment.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Booking status changed successfully"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "409": {
+                        "description": "Invalid booking state transition"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/bookings/{booking}/cancel": {
+            "patch": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Cancel booking",
+                "operationId": "ac17fa94c7e8c783f9657364e303f26e",
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "Customer requested cancellation.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Booking cancelled successfully"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "409": {
+                        "description": "Booking cannot be cancelled"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/bookings/{booking}/reschedule": {
+            "patch": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Reschedule booking",
+                "operationId": "1474a097d01a44bfc71988cfb0104f7e",
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "booking_slot_id"
+                                ],
+                                "properties": {
+                                    "booking_slot_id": {
+                                        "description": "ID of the available booking slot to move the booking to.",
+                                        "type": "integer",
+                                        "example": 25
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "Customer requested a different time.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Booking rescheduled successfully"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Booking or booking slot not found"
+                    },
+                    "409": {
+                        "description": "Requested booking slot is unavailable"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/availability": {
+            "get": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Get available booking slots",
+                "description": "Returns available time slots for a service, location, and date.",
+                "operationId": "2aec525ba93dd4736235ea7bf17c1bb3",
+                "parameters": [
+                    {
+                        "name": "service_id",
+                        "in": "query",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "location_id",
+                        "in": "query",
+                        "description": "Location ID where the service is available.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Date for which availability is requested.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2026-09-20"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Availability retrieved successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "List categories",
+                "description": "Retrieve all available categories.",
+                "operationId": "130e35b58a40974b4e1e2a5584db0290",
+                "responses": {
+                    "200": {
+                        "description": "Categories retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create category",
+                "description": "Create a new category. Available to admin and provider users.",
+                "operationId": "adbab615cd4f0187fd3ab2dc67320d19",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "slug"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Dental Services"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "dental-services"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Dental and oral care services.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Category created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Only admin and provider users can create categories"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/categories/{category}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get category",
+                "description": "Retrieve a specific category by ID.",
+                "operationId": "732d9429a88c993d16c8a9e35093efa4",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Category retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Update category",
+                "description": "Update an existing category. Available to admin and provider users.",
+                "operationId": "21c7750858625b4a8e00a4763ce5b900",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Dental Services"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "dental-services"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Dental and oral care services.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Category updated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Only admin and provider users can update categories"
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Delete category",
+                "description": "Delete an existing category. Available to admin and provider users.",
+                "operationId": "c2e9d7ec5b575b3761b4b7f6e95d5bb5",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Category deleted successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Only admin and provider users can delete categories"
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/csrf-token": {
+            "get": {
+                "tags": [
+                    "CSRF"
+                ],
+                "summary": "Get API CSRF token",
+                "description": "Generates a CSRF token for the authenticated user and sets it in the XSRF-TOKEN cookie. The token must be sent in the X-CSRF-TOKEN header for state-changing requests.",
+                "operationId": "268fba1583830bd1ce58ddb174d358a2",
+                "responses": {
+                    "200": {
+                        "description": "CSRF token generated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "csrf_token": {
+                                                    "type": "string",
+                                                    "example": "abc123xyz..."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/health": {
+            "get": {
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Check API health",
+                "operationId": "da03807061582162a60a8da916ae169f",
+                "responses": {
+                    "200": {
+                        "description": "API is healthy"
+                    },
+                    "503": {
+                        "description": "One or more services are unavailable"
+                    }
+                }
+            }
+        },
+        "/locations": {
+            "get": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "List locations",
+                "description": "Returns a paginated list of active locations.",
+                "operationId": "d660d84cbd613277df9ad7ccda754e67",
+                "responses": {
+                    "200": {
+                        "description": "Locations retrieved successfully"
+                    }
+                },
+                "security": []
+            },
+            "post": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Create a location",
+                "description": "Create a new location. Available to providers and administrators.",
+                "operationId": "5b206ab9cb7ad2f40a5c676cadeb8fb6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "address",
+                                    "city",
+                                    "country",
+                                    "timezone"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Main Branch"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "123 Main Street"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "New York"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "example": "USA"
+                                    },
+                                    "latitude": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 40.7128,
+                                        "nullable": true
+                                    },
+                                    "longitude": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": -74.006,
+                                        "nullable": true
+                                    },
+                                    "is_primary": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "is_active": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "timezone": {
+                                        "type": "string",
+                                        "example": "America/New_York"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Location created successfully"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/locations/{location}": {
+            "get": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Get location",
+                "operationId": "cac740259c3ae1426a8a8c9e37592f24",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                },
+                "security": []
+            },
+            "put": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Update a location",
+                "operationId": "089c0201e7a2250f9bddff9481fb0b4c",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Downtown Branch"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "456 Main Street"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "New York"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "example": "USA"
+                                    },
+                                    "latitude": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 40.7128,
+                                        "nullable": true
+                                    },
+                                    "longitude": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": -74.006,
+                                        "nullable": true
+                                    },
+                                    "timezone": {
+                                        "type": "string",
+                                        "example": "America/New_York"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Location updated successfully"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Delete a location",
+                "operationId": "5486f127516d29de91cc3685a867c359",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location deleted successfully"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/payments": {
+            "get": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "List payments",
+                "description": "Returns a paginated list of payments. Customers can only see their own payments, while administrators can see all payments.",
+                "operationId": "99cc247b991b6d9e97adb48ae146469d",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1,
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Payments retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Payments retrieved successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "booking_id": {
+                                                                "type": "integer",
+                                                                "example": 15
+                                                            },
+                                                            "amount": {
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 99.99
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "example": "paid",
+                                                                "enum": [
+                                                                    "pending",
+                                                                    "paid",
+                                                                    "failed",
+                                                                    "refunded"
+                                                                ]
+                                                            },
+                                                            "provider": {
+                                                                "type": "string",
+                                                                "example": "mock"
+                                                            },
+                                                            "transaction_id": {
+                                                                "type": "string",
+                                                                "example": "mock_550e8400-e29b-41d4-a716-446655440000",
+                                                                "nullable": true
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "format": "date-time",
+                                                                "example": "2026-09-20T10:30:00Z"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "first_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/api/v1/payments?page=1"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 15
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 42
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Create a payment",
+                "description": "Creates a payment for a booking using the configured payment gateway. Requires Sanctum authentication and an Idempotency-Key header.",
+                "operationId": "ddd1ea9b808701bd4dbdf016e552d5e9",
+                "parameters": [
+                    {
+                        "name": "Idempotency-Key",
+                        "in": "header",
+                        "description": "Unique key used to safely retry the payment request without creating duplicate payments.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "payment-order-123456"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "booking_id",
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "booking_id": {
+                                        "type": "integer",
+                                        "example": 6
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 99.99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Payment created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "409": {
+                        "description": "Duplicate idempotency key"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/provider/payments": {
+            "get": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "List provider payments",
+                "description": "Returns a paginated list of payments for bookings associated with the authenticated provider.",
+                "operationId": "0821f07a6a76b9fd59ce8f011b40ff4f",
+                "responses": {
+                    "200": {
+                        "description": "Provider payments retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Provider access required"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/payments/{payment}": {
+            "get": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Get payment status",
+                "description": "Returns the details and current status of a payment. Customers can only access payments belonging to their own bookings.",
+                "operationId": "8f50ca98ef2f46b3d7949a0ebfa58bf8",
+                "parameters": [
+                    {
+                        "name": "payment",
+                        "in": "path",
+                        "description": "Payment ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Payment retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Payment retrieved successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "booking_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "amount": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 99.99
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "paid"
+                                                },
+                                                "provider": {
+                                                    "type": "string",
+                                                    "example": "mock"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "txn_mock_123456",
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2026-09-20T10:30:00Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Payment not found or does not belong to the authenticated customer"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/payments/webhook": {
+            "post": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Handle payment provider webhook",
+                "description": "Receives payment events from the payment provider. This endpoint does not require Sanctum authentication. The request must include a valid HMAC-SHA256 signature in X-Payment-Signature.",
+                "operationId": "7035737648e441a278fe1f9c830a3d59",
+                "parameters": [
+                    {
+                        "name": "X-Payment-Signature",
+                        "in": "header",
+                        "description": "HMAC-SHA256 signature generated from the raw JSON request body using the configured webhook secret.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "9f2d7b4c8e1a..."
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "type",
+                                    "data"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "Unique webhook event ID.",
+                                        "type": "string",
+                                        "example": "evt_test_001"
+                                    },
+                                    "type": {
+                                        "description": "Webhook event type.",
+                                        "type": "string",
+                                        "example": "payment.succeeded",
+                                        "enum": [
+                                            "payment.succeeded",
+                                            "payment.failed",
+                                            "payment.refunded"
+                                        ]
+                                    },
+                                    "data": {
+                                        "required": [
+                                            "transaction_id"
+                                        ],
+                                        "properties": {
+                                            "transaction_id": {
+                                                "description": "Transaction ID of the payment.",
+                                                "type": "string",
+                                                "example": "mock_123456"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "id": "evt_test_001",
+                                "type": "payment.succeeded",
+                                "data": {
+                                    "transaction_id": "mock_123456"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Webhook processed successfully"
+                    },
+                    "401": {
+                        "description": "Invalid webhook signature"
+                    },
+                    "404": {
+                        "description": "Payment not found"
+                    },
+                    "422": {
+                        "description": "Invalid or unsupported webhook payload"
+                    }
+                }
+            }
+        },
+        "/payments/webhook/test-signature": {
+            "post": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Generate webhook signature for local testing",
+                "description": "Generates the HMAC-SHA256 signature for the given webhook payload. This endpoint is available only in the local environment and is intended for testing the payment webhook from Swagger.",
+                "operationId": "620e6d02daee2f880f438aa62c4ab9fd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "type",
+                                    "data"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "Unique webhook event ID.",
+                                        "type": "string",
+                                        "example": "evt_test_001"
+                                    },
+                                    "type": {
+                                        "description": "Payment webhook event type.",
+                                        "type": "string",
+                                        "example": "payment.succeeded",
+                                        "enum": [
+                                            "payment.succeeded",
+                                            "payment.failed",
+                                            "payment.refunded"
+                                        ]
+                                    },
+                                    "data": {
+                                        "required": [
+                                            "transaction_id"
+                                        ],
+                                        "properties": {
+                                            "transaction_id": {
+                                                "description": "Transaction ID associated with the payment.",
+                                                "type": "string",
+                                                "example": "mock_123456"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "id": "evt_test_001",
+                                "type": "payment.succeeded",
+                                "data": {
+                                    "transaction_id": "mock_123456"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Webhook signature generated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "signature": {
+                                            "type": "string",
+                                            "example": "9f2d7b4c8e1a1234567890abcdef1234567890abcdef1234567890abcdef1234"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Endpoint is available only in the local environment"
+                    }
+                }
+            }
+        },
+        "/provider/profile": {
+            "get": {
+                "tags": [
+                    "Provider Profile"
+                ],
+                "summary": "Get provider profile",
+                "description": "Retrieve the authenticated provider profile.",
+                "operationId": "de0bbb092188316ee716ca175d8b8f86",
+                "responses": {
+                    "200": {
+                        "description": "Provider profile retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "User is not authorized to access the provider profile"
+                    },
+                    "404": {
+                        "description": "Provider profile not found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Provider Profile"
+                ],
+                "summary": "Update provider profile",
+                "description": "Update the authenticated provider profile.",
+                "operationId": "cf810e1411bffd7812ac521def2a4f2b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "business_name": {
+                                        "type": "string",
+                                        "example": "John Dental Clinic"
+                                    },
+                                    "bio": {
+                                        "type": "string",
+                                        "example": "Updated description."
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+1234567890"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Provider profile updated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "User is not authorized to update the provider profile"
+                    },
+                    "404": {
+                        "description": "Provider profile not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Provider Profile"
+                ],
+                "summary": "Create provider profile",
+                "description": "Create the profile for the authenticated provider.",
+                "operationId": "29140d839d1aeb6f8d5f0a529a996da0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "business_name": {
+                                        "type": "string",
+                                        "example": "John Dental Clinic"
+                                    },
+                                    "bio": {
+                                        "type": "string",
+                                        "example": "Professional dental care services."
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+1234567890"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Provider profile created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "User is not authorized to create a provider profile"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/public-holidays": {
+            "get": {
+                "tags": [
+                    "Public Holidays"
+                ],
+                "summary": "List public holidays",
+                "description": "Returns a paginated list of public holidays. Requires public_holiday:read ability.",
+                "operationId": "2f2c7217d2c0315168c77e6c366d9a3c",
+                "responses": {
+                    "200": {
+                        "description": "Public holidays retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing required ability"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Public Holidays"
+                ],
+                "summary": "Create a public holiday",
+                "description": "Creates a new public holiday. Requires public_holiday:write ability.",
+                "operationId": "570b2e9fadfb7829001444a6a8d336a8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "date",
+                                    "country"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the public holiday.",
+                                        "type": "string",
+                                        "example": "Christmas Day",
+                                        "maxLength": 255
+                                    },
+                                    "date": {
+                                        "description": "Date of the public holiday.",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-12-25"
+                                    },
+                                    "country": {
+                                        "description": "Country where the public holiday applies.",
+                                        "type": "string",
+                                        "example": "USA",
+                                        "maxLength": 100
+                                    },
+                                    "location_id": {
+                                        "description": "Optional location ID.",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "nullable": true
+                                    },
+                                    "description": {
+                                        "description": "Optional description of the public holiday.",
+                                        "type": "string",
+                                        "example": "Christmas holiday",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Public holiday created successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing required ability"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/public-holidays/{publicHoliday}": {
+            "get": {
+                "tags": [
+                    "Public Holidays"
+                ],
+                "summary": "Get a public holiday",
+                "description": "Returns a specific public holiday. Requires public_holiday:read ability.",
+                "operationId": "435dc92ea70a362fd20d058750f34e10",
+                "parameters": [
+                    {
+                        "name": "publicHoliday",
+                        "in": "path",
+                        "description": "Public holiday ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public holiday retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing required ability"
+                    },
+                    "404": {
+                        "description": "Public holiday not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Public Holidays"
+                ],
+                "summary": "Update a public holiday",
+                "description": "Updates an existing public holiday. Requires public_holiday:write ability.",
+                "operationId": "d93c0ee253039c0039e7f98f9f090cd8",
+                "parameters": [
+                    {
+                        "name": "publicHoliday",
+                        "in": "path",
+                        "description": "Public holiday ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Optional holiday name.",
+                                        "type": "string",
+                                        "example": "Christmas Day",
+                                        "maxLength": 255
+                                    },
+                                    "date": {
+                                        "description": "Optional holiday date.",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-12-25"
+                                    },
+                                    "country": {
+                                        "description": "Optional country.",
+                                        "type": "string",
+                                        "example": "USA",
+                                        "maxLength": 100
+                                    },
+                                    "description": {
+                                        "description": "Optional description.",
+                                        "type": "string",
+                                        "example": "Updated holiday description",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Public holiday updated successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing required ability"
+                    },
+                    "404": {
+                        "description": "Public holiday not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Public Holidays"
+                ],
+                "summary": "Delete a public holiday",
+                "description": "Deletes a public holiday. Requires public_holiday:write ability.",
+                "operationId": "583df18aa26cf52a86fb778fce2e4ee3",
+                "parameters": [
+                    {
+                        "name": "publicHoliday",
+                        "in": "path",
+                        "description": "Public holiday ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public holiday deleted successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing required ability"
+                    },
+                    "404": {
+                        "description": "Public holiday not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/locations/{locationId}/public-holidays": {
+            "get": {
+                "tags": [
+                    "Public Holidays"
+                ],
+                "summary": "Get public holidays by location",
+                "description": "Returns public holidays associated with a specific location. Requires public_holiday:read ability.",
+                "operationId": "0e701e3441910e8b3dd61d54c96f8fe2",
+                "parameters": [
+                    {
+                        "name": "locationId",
+                        "in": "path",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public holidays retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing required ability"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/schedule-exceptions": {
+            "get": {
+                "tags": [
+                    "Schedule Exceptions"
+                ],
+                "summary": "List schedule exceptions",
+                "description": "Requires the schedule_exception:read ability.",
+                "operationId": "f6bd6284566b473fe229eb002fafa989",
+                "responses": {
+                    "200": {
+                        "description": "Schedule exceptions retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing schedule_exception:read ability"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Schedule Exceptions"
+                ],
+                "summary": "Create a schedule exception",
+                "description": "Creates a schedule exception for a location. Requires the schedule_exception:write ability.",
+                "operationId": "fb3857bc920b47ac107d4d7909efd632",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "location_id",
+                                    "date",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "location_id": {
+                                        "description": "ID of the location.",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "date": {
+                                        "description": "Date of the schedule exception.",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-09-25"
+                                    },
+                                    "type": {
+                                        "description": "Type of schedule exception.",
+                                        "type": "string",
+                                        "example": "holiday",
+                                        "enum": [
+                                            "holiday",
+                                            "custom_hours"
+                                        ]
+                                    },
+                                    "start_time": {
+                                        "description": "Start time in H:i format.",
+                                        "type": "string",
+                                        "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                                        "example": "09:00",
+                                        "nullable": true
+                                    },
+                                    "end_time": {
+                                        "description": "End time in H:i format. Must be after start_time.",
+                                        "type": "string",
+                                        "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                                        "example": "13:00",
+                                        "nullable": true
+                                    },
+                                    "reason": {
+                                        "description": "Optional reason for the exception.",
+                                        "type": "string",
+                                        "example": "Public holiday",
+                                        "nullable": true,
+                                        "maxLength": 500
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Schedule exception created successfully"
+                    },
+                    "403": {
+                        "description": "Missing schedule_exception:write ability"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/schedule-exceptions/{scheduleException}": {
+            "get": {
+                "tags": [
+                    "Schedule Exceptions"
+                ],
+                "summary": "Get a schedule exception",
+                "description": "Requires the schedule_exception:read ability.",
+                "operationId": "fb34e36b45f7d72b607cfdc7e91b1cc6",
+                "parameters": [
+                    {
+                        "name": "scheduleException",
+                        "in": "path",
+                        "description": "Schedule exception ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Schedule exception retrieved successfully"
+                    },
+                    "403": {
+                        "description": "Missing schedule_exception:read ability"
+                    },
+                    "404": {
+                        "description": "Schedule exception not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Schedule Exceptions"
+                ],
+                "summary": "Update a schedule exception",
+                "description": "Updates an existing schedule exception. Requires the schedule_exception:write ability.",
+                "operationId": "c1bd90dcbb08d22782f6825208a1ed33",
+                "parameters": [
+                    {
+                        "name": "scheduleException",
+                        "in": "path",
+                        "description": "Schedule exception ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "type": {
+                                        "description": "Type of schedule exception.",
+                                        "type": "string",
+                                        "example": "custom_hours",
+                                        "enum": [
+                                            "holiday",
+                                            "custom_hours"
+                                        ]
+                                    },
+                                    "start_time": {
+                                        "description": "Start time in H:i format.",
+                                        "type": "string",
+                                        "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                                        "example": "10:00",
+                                        "nullable": true
+                                    },
+                                    "end_time": {
+                                        "description": "End time in H:i format. Must be after start_time.",
+                                        "type": "string",
+                                        "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                                        "example": "14:00",
+                                        "nullable": true
+                                    },
+                                    "reason": {
+                                        "description": "Optional reason for the exception.",
+                                        "type": "string",
+                                        "example": "Modified working hours",
+                                        "nullable": true,
+                                        "maxLength": 500
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Schedule exception updated successfully"
+                    },
+                    "403": {
+                        "description": "Missing schedule_exception:write ability"
+                    },
+                    "404": {
+                        "description": "Schedule exception not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Schedule Exceptions"
+                ],
+                "summary": "Delete a schedule exception",
+                "description": "Deletes a schedule exception. Requires the schedule_exception:write ability.",
+                "operationId": "34817f16695812feeebac42d327f4624",
+                "parameters": [
+                    {
+                        "name": "scheduleException",
+                        "in": "path",
+                        "description": "Schedule exception ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Schedule exception deleted successfully"
+                    },
+                    "403": {
+                        "description": "Missing schedule_exception:write ability"
+                    },
+                    "404": {
+                        "description": "Schedule exception not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/locations/{locationId}/schedule-exceptions": {
+            "get": {
+                "tags": [
+                    "Schedule Exceptions"
+                ],
+                "summary": "Get schedule exceptions by location",
+                "description": "Returns schedule exceptions configured for a specific location.",
+                "operationId": "de4353ad1bbd1a49e26e80e89f502239",
+                "parameters": [
+                    {
+                        "name": "locationId",
+                        "in": "path",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location schedule exceptions retrieved successfully"
+                    },
+                    "403": {
+                        "description": "Missing schedule_exception:read ability"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/services/search": {
+            "get": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Search services",
+                "description": "Search services by keyword and optionally filter by location.",
+                "operationId": "97dfb084625f84962d0a052ddfe188bc",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search term. Minimum 2 characters, maximum 100 characters.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Haircut",
+                            "maxLength": 100,
+                            "minLength": 2
+                        }
+                    },
+                    {
+                        "name": "location_id",
+                        "in": "query",
+                        "description": "Optional location ID to filter services by location.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Services found successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/services": {
+            "get": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "List services",
+                "operationId": "f398ecfdf7323ca4faa2fd19a65765ca",
+                "responses": {
+                    "200": {
+                        "description": "Services retrieved successfully"
+                    }
+                },
+                "security": []
+            },
+            "post": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Create a service",
+                "description": "Create a service. Available to providers and administrators.",
+                "operationId": "a84523ed8491f247a9210c50496a1380",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "name",
+                                    "duration",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Premium Haircut"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Professional haircut service.",
+                                        "nullable": true
+                                    },
+                                    "duration": {
+                                        "description": "Service duration in minutes.",
+                                        "type": "integer",
+                                        "example": 60
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 35
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "active",
+                                        "enum": [
+                                            "active",
+                                            "inactive"
+                                        ]
+                                    },
+                                    "location_ids": {
+                                        "description": "IDs of the locations where this service is available.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Service created successfully"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/services/{service}": {
+            "get": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Get service",
+                "operationId": "0e184fbe8ad46e02ae8f388ff0732bd1",
+                "parameters": [
+                    {
+                        "name": "service",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Service not found"
+                    }
+                },
+                "security": []
+            },
+            "put": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Update a service",
+                "description": "Update a service. Available to providers and administrators.",
+                "operationId": "df2db5f83afeea9e2cbfb9366e20b0dc",
+                "parameters": [
+                    {
+                        "name": "service",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "category_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Premium Haircut"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Updated service description.",
+                                        "nullable": true
+                                    },
+                                    "duration": {
+                                        "type": "integer",
+                                        "example": 90
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 45
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "active",
+                                        "enum": [
+                                            "active",
+                                            "inactive"
+                                        ]
+                                    },
+                                    "location_ids": {
+                                        "description": "IDs of the locations where this service is available.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Service updated successfully"
+                    },
+                    "404": {
+                        "description": "Service not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Delete a service",
+                "description": "Soft delete a service.",
+                "operationId": "2fb3da6b179c3a67301417eb977505ae",
+                "parameters": [
+                    {
+                        "name": "service",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service deleted successfully"
+                    },
+                    "404": {
+                        "description": "Service not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/working-hours": {
+            "get": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "List working hours",
+                "description": "Requires the working_hour:read ability.",
+                "operationId": "010783fcb3c10036b7c415f60ce4cb3e",
+                "responses": {
+                    "200": {
+                        "description": "Working hours retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:read ability"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Create a working hour",
+                "description": "Creates a working-hour schedule. Requires the working_hour:write ability.",
+                "operationId": "4ae78982609564c6be813adfbed23417",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "location_id",
+                                    "day_of_week",
+                                    "start_time",
+                                    "end_time"
+                                ],
+                                "properties": {
+                                    "location_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "day_of_week": {
+                                        "type": "string",
+                                        "example": "monday",
+                                        "enum": [
+                                            "monday",
+                                            "tuesday",
+                                            "wednesday",
+                                            "thursday",
+                                            "friday",
+                                            "saturday",
+                                            "sunday"
+                                        ]
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "09:00:00"
+                                    },
+                                    "end_time": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "17:00:00"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Working hour created successfully"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:write ability"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/working-hours/{workingHour}": {
+            "get": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Get a working hour",
+                "description": "Requires the working_hour:read ability.",
+                "operationId": "ace8abf5cf91f476e1258ec03381c828",
+                "parameters": [
+                    {
+                        "name": "workingHour",
+                        "in": "path",
+                        "description": "Working hour ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Working hour retrieved successfully"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:read ability"
+                    },
+                    "404": {
+                        "description": "Working hour not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Update a working hour",
+                "description": "Updates an existing working-hour schedule. Requires the working_hour:write ability.",
+                "operationId": "17a6ab8833e8d16d786688463d175b8d",
+                "parameters": [
+                    {
+                        "name": "workingHour",
+                        "in": "path",
+                        "description": "Working hour ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "day_of_week": {
+                                        "type": "string",
+                                        "example": "monday",
+                                        "enum": [
+                                            "monday",
+                                            "tuesday",
+                                            "wednesday",
+                                            "thursday",
+                                            "friday",
+                                            "saturday",
+                                            "sunday"
+                                        ]
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "10:00"
+                                    },
+                                    "end_time": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "18:00"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Working hour updated successfully"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:write ability"
+                    },
+                    "404": {
+                        "description": "Working hour not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Delete a working hour",
+                "description": "Deletes a working-hour schedule. Requires the working_hour:write ability.",
+                "operationId": "74a98ed4e25d53f218a590d69ca612b7",
+                "parameters": [
+                    {
+                        "name": "workingHour",
+                        "in": "path",
+                        "description": "Working hour ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Working hour deleted successfully"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:write ability"
+                    },
+                    "404": {
+                        "description": "Working hour not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/locations/{locationId}/working-hours": {
+            "get": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Get working hours by location",
+                "description": "Returns working hours configured for a specific location.",
+                "operationId": "5cc126ed6560e8c41d01e32ddb97967a",
+                "parameters": [
+                    {
+                        "name": "locationId",
+                        "in": "path",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location working hours retrieved successfully"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:read ability"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/services/{serviceId}/working-hours": {
+            "get": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Get working hours by service",
+                "description": "Returns working hours associated with the locations where the service is available.",
+                "operationId": "31a652ad4e3eadc7a7056a17ccbf3577",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "in": "path",
+                        "description": "Service ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service working hours retrieved successfully"
+                    },
+                    "403": {
+                        "description": "Missing working_hour:read ability"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/provider/locations/{locationId}/working-hours/days-off": {
+            "get": {
+                "tags": [
+                    "Working Hours"
+                ],
+                "summary": "Get weekly days off for a location",
+                "description": "Returns the days of the week on which the specified location has no active working hours. The location must belong to the authenticated provider.",
+                "operationId": "cab5b35ca78943e5b55f0a6da63c7f7b",
+                "parameters": [
+                    {
+                        "name": "locationId",
+                        "in": "path",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Weekly days off retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Location does not belong to the authenticated provider"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "bearerFormat": "Sanctum Token",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "CSRF",
+            "description": "API CSRF token management"
+        },
+        {
+            "name": "Availability",
+            "description": "Provider availability management"
+        },
+        {
+            "name": "Locations",
+            "description": "Provider locations management"
+        },
+        {
+            "name": "Categories",
+            "description": "Service categories management"
+        },
+        {
+            "name": "Services",
+            "description": "Services and service locations"
+        },
+        {
+            "name": "Working Hours",
+            "description": "Working hours management"
+        },
+        {
+            "name": "Schedule Exceptions",
+            "description": "Schedule exceptions management"
+        },
+        {
+            "name": "Public Holidays",
+            "description": "Public holidays management"
+        },
+        {
+            "name": "Bookings",
+            "description": "Booking management"
+        },
+        {
+            "name": "Payments",
+            "description": "Payment management and webhooks"
+        },
+        {
+            "name": "Admin - Users",
+            "description": "Admin user management"
+        },
+        {
+            "name": "Admin - Audit Logs",
+            "description": "Admin audit log management"
+        },
+        {
+            "name": "Admin - Reports",
+            "description": "Admin reports and analytics"
+        },
+        {
+            "name": "Admin - Locations",
+            "description": "Admin location management"
+        },
+        {
+            "name": "Admin - Services",
+            "description": "Admin service management"
+        },
+        {
+            "name": "Health",
+            "description": "API health checks"
+        },
+        {
+            "name": "Admin - Notifications",
+            "description": "Admin - Notifications"
+        },
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Provider Profile",
+            "description": "Provider Profile"
+        }
+    ]
+}
